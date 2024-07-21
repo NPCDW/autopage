@@ -2,15 +2,18 @@ import random
 import time
 from DrissionPage import ChromiumPage
 from DrissionPage import ChromiumOptions
+from config import config
 
 
 class LocalSolverCF:
     def __init__(self, url, cookies=None):
-        co = ChromiumOptions().set_local_port(9339).set_timeouts(3)
-        # co.set_browser_path("/usr/bin/google-chrome")
-        co.headless().set_argument('--no-sandbox')
-        # co.set_argument("--incognito")
-        co.set_user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36")
+        co = ChromiumOptions().set_local_port(config["application"]["remote_port"]).set_timeouts(3)
+        if config["application"]["browser_path"].strip():
+            co.set_browser_path("/usr/bin/google-chrome")
+        if config["application"]["headless"]:
+            co.headless().set_argument('--no-sandbox')
+        if config["application"]["incognito_mode"]:
+            co.set_argument("--incognito")
         page = ChromiumPage(co)
         if cookies is not None:
             page.set.cookies(cookies)
@@ -90,7 +93,8 @@ def main():
     local_solver_cf = LocalSolverCF('https://whmcs.sharon.io/index.php?rp=/store/hk-lite')
     local_solver_cf.capsolver()
     print(local_solver_cf.page.html)
-    local_solver_cf.close()
+    if config["application"]["close_after_exec"]:
+        local_solver_cf.close()
 
 
 if __name__ == '__main__':

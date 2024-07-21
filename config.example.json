@@ -1,4 +1,11 @@
 {
+  "application": {
+    "remote_port": 9222,
+    "headless": true,
+    "incognito_mode": false,
+    "browser_path": "/usr/bin/google-chrome",
+    "close_after_exec": false
+  },
   "telegram": {
     "bot_token": "123456789:QEWEDesfdewqfewfqeqWEQEWQ",
     "chat_id": "-1001234567890"

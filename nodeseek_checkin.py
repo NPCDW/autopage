@@ -2,11 +2,10 @@ import time
 import requests
 
 from cf_solver import LocalSolverCF
-from config import get_config
+from config import config
 
 
 def main():
-    config = get_config()
     session = config['nodeseek']['session']
     bot_token = config['telegram']['bot_token']
     chat_id = config['telegram']['chat_id']
@@ -26,6 +25,8 @@ def main():
         "text": "NodeSeek: " + checkin_result
     })
     # print(local_solver_cf.page.html)
+    if config["application"]["close_after_exec"]:
+        local_solver_cf.close()
 
 
 if __name__ == '__main__':
