@@ -1,8 +1,4 @@
 {
   "image": "selenium/standalone-chrome:latest",
-  "features": {
-    "ghcr.io/devcontainers/features/python:1": {
-        "version": "1.6.3"
-    }
-  }
+  "postCreateCommand": "sudo apt update -y && sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && sudo python3 get-pip.py && pip3 install --user -r requirements.txt"
 }
