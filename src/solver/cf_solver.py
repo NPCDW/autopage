@@ -3,9 +3,8 @@ import time
 
 from DrissionPage import ChromiumPage
 from DrissionPage import ChromiumOptions
-from DrissionPage.common import Actions
-from config import config
-from pyHM import mouse
+from src.config.config import config
+# from pyHM import mouse
 
 
 class LocalSolverCF:
@@ -51,7 +50,7 @@ class LocalSolverCF:
     </div>
     ```
     '''
-    def capsolver(self):
+    def solver(self):
         shadow_root = self.have_verify()
         if not shadow_root:
             return None
@@ -105,7 +104,7 @@ class LocalSolverCF:
 
 def main():
     local_solver_cf = LocalSolverCF('https://whmcs.sharon.io/index.php?rp=/store/hk-lite')
-    local_solver_cf.capsolver()
+    local_solver_cf.solver()
     print(local_solver_cf.page.html)
     if config["application"]["close_after_exec"]:
         local_solver_cf.close()
