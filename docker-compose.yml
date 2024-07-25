@@ -2,6 +2,7 @@ services:
   autopage:
     image: npcdw/autopage:latest
     container_name: autopage
+    user: root
     volumes:
       - "${PWD}/data/:/autopage/data"
     environment:
