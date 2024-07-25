@@ -10,12 +10,14 @@ from src.config.config import config
 class LocalSolverCF:
     def __init__(self, url, cookies=None):
         co = ChromiumOptions().set_local_port(config["application"]["remote_port"]).set_timeouts(3)
-        if config["application"]["browser_path"].strip():
-            co.set_browser_path("/usr/bin/google-chrome")
+        if "browser_path" not in config["application"] and config["application"]["browser_path"].strip():
+            co.set_browser_path(config["application"]["browser_path"])
         if config["application"]["headless"]:
             co.headless().set_argument('--no-sandbox')
         if config["application"]["incognito_mode"]:
             co.set_argument("--incognito")
+        if "user_agent" in config["application"] and config["application"]["user_agent"].strip():
+            co.set_user_agent(config["application"]["user_agent"])
         page = ChromiumPage(co)
         if cookies is not None:
             page.set.cookies(cookies)
