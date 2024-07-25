@@ -1,0 +1,10 @@
+services:
+  autopage:
+    image: npcdw/autopage:latest
+    container_name: autopage
+    volumes:
+      - "${PWD}/data/:/autopage/data"
+    environment:
+      TZ : 'Asia/Shanghai'
+      LANG: 'C.UTF-8'
+      LC_ALL: 'C.UTF-8'
