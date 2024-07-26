@@ -10,7 +10,7 @@ from src.config.config import config
 class LocalSolverCF:
     def __init__(self, url, cookies=None):
         co = ChromiumOptions().set_local_port(config["application"]["remote_port"]).set_timeouts(3)
-        if "browser_path" not in config["application"] and config["application"]["browser_path"].strip():
+        if "browser_path" in config["application"] and config["application"]["browser_path"].strip():
             co.set_browser_path(config["application"]["browser_path"])
         if config["application"]["headless"]:
             co.headless().set_argument('--no-sandbox')
@@ -27,7 +27,7 @@ class LocalSolverCF:
 
     def have_verify(self):
         try:
-            cf_wrapper = self.page.ele('.cf-turnstile-wrapper', timeout=3)
+            cf_wrapper = self.page.ele('.spacer', timeout=3).ele('tag:div').ele('tag:div')
             shadow_root = cf_wrapper.shadow_root
             return shadow_root
         except:
