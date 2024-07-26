@@ -41,36 +41,10 @@ def main():
                 tg.send_message("库存变动通知\n"
                                 "商品: YxVM Tokyo Volume Standard\n"
                                 "库存: " + product2_stocks_remaining + "\n"
-                                "价格: $3.00 USD Monthly\n"
+                                "价格: $5.00 USD Monthly\n"
                                 "aff: [go](https://yxvm.com/index.php?aff=373&rp=/store/tokyo-volume-beta/standard)",
                                 bot_token, chat_id, parse_mode="Markdown")
                 yxvm_tokyo_vol_standard_stocks_remaining = product2_stocks_remaining
-
-            product3_stocks_remaining = local_solver_cf.page.ele("#product3-name").parent(2).ele(".qty").text
-            # print(product3_stocks_remaining, yxvm_tokyo_vol_advanced_stocks_remaining)
-            if loop_number == 0:
-                yxvm_tokyo_vol_advanced_stocks_remaining = product3_stocks_remaining
-            if product3_stocks_remaining != yxvm_tokyo_vol_advanced_stocks_remaining:
-                tg.send_message("库存变动通知\n"
-                                "商品: YxVM Tokyo Volume Advanced\n"
-                                "库存: " + product3_stocks_remaining + "\n"
-                                "价格: $3.00 USD Monthly\n"
-                                "aff: [go](https://yxvm.com/index.php?aff=373&rp=/store/tokyo-volume-beta/advanced)",
-                                bot_token, chat_id, parse_mode="Markdown")
-                yxvm_tokyo_vol_advanced_stocks_remaining = product3_stocks_remaining
-
-            product4_stocks_remaining = local_solver_cf.page.ele("#product4-name").parent(2).ele(".qty").text
-            # print(product4_stocks_remaining, yxvm_tokyo_vol_luxury_stocks_remaining)
-            if loop_number == 0:
-                yxvm_tokyo_vol_luxury_stocks_remaining = product4_stocks_remaining
-            if product4_stocks_remaining != yxvm_tokyo_vol_luxury_stocks_remaining:
-                tg.send_message("库存变动通知\n"
-                                "商品: YxVM Tokyo Volume Luxury\n"
-                                "库存: " + product4_stocks_remaining + "\n"
-                                "价格: $3.00 USD Monthly\n"
-                                "aff: [go](https://yxvm.com/index.php?aff=373&rp=/store/tokyo-volume-beta/luxury)",
-                                bot_token, chat_id, parse_mode="Markdown")
-                yxvm_tokyo_vol_luxury_stocks_remaining = product4_stocks_remaining
 
             loop_number += 1
         except:
