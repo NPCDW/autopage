@@ -5,7 +5,7 @@ import requests
 from src.config.config import config
 
 
-def send_message(text: string, bot_token=None, chat_id=None, parse_mode=None):
+def send_message(text: string, bot_token=None, chat_id=None, parse_mode="Markdown"):
     if bot_token is None:
         bot_token = config['telegram']['bot_token']
     if chat_id is None:
