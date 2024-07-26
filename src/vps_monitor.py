@@ -31,6 +31,7 @@ def main():
                                 "价格: $3.00 USD Monthly\n"
                                 "aff: [go](https://yxvm.com/index.php?aff=373&rp=/store/tokyo-volume-beta/basic)",
                                 bot_token, chat_id, parse_mode="Markdown")
+                yxvm_tokyo_vol_basic_stocks_remaining = product1_stocks_remaining
 
             product2_stocks_remaining = local_solver_cf.page.ele("#product2-name").parent(2).ele(".qty").text
             # print(product2_stocks_remaining, yxvm_tokyo_vol_standard_stocks_remaining)
@@ -43,6 +44,7 @@ def main():
                                 "价格: $3.00 USD Monthly\n"
                                 "aff: [go](https://yxvm.com/index.php?aff=373&rp=/store/tokyo-volume-beta/standard)",
                                 bot_token, chat_id, parse_mode="Markdown")
+                yxvm_tokyo_vol_standard_stocks_remaining = product2_stocks_remaining
 
             product3_stocks_remaining = local_solver_cf.page.ele("#product3-name").parent(2).ele(".qty").text
             # print(product3_stocks_remaining, yxvm_tokyo_vol_advanced_stocks_remaining)
@@ -55,6 +57,7 @@ def main():
                                 "价格: $3.00 USD Monthly\n"
                                 "aff: [go](https://yxvm.com/index.php?aff=373&rp=/store/tokyo-volume-beta/advanced)",
                                 bot_token, chat_id, parse_mode="Markdown")
+                yxvm_tokyo_vol_advanced_stocks_remaining = product3_stocks_remaining
 
             product4_stocks_remaining = local_solver_cf.page.ele("#product4-name").parent(2).ele(".qty").text
             # print(product4_stocks_remaining, yxvm_tokyo_vol_luxury_stocks_remaining)
@@ -67,6 +70,7 @@ def main():
                                 "价格: $3.00 USD Monthly\n"
                                 "aff: [go](https://yxvm.com/index.php?aff=373&rp=/store/tokyo-volume-beta/luxury)",
                                 bot_token, chat_id, parse_mode="Markdown")
+                yxvm_tokyo_vol_luxury_stocks_remaining = product4_stocks_remaining
 
             loop_number += 1
         except:
