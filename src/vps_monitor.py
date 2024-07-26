@@ -12,8 +12,6 @@ def main():
     loop_number = 0
     yxvm_tokyo_vol_basic_stocks_remaining = ""
     yxvm_tokyo_vol_standard_stocks_remaining = ""
-    yxvm_tokyo_vol_advanced_stocks_remaining = ""
-    yxvm_tokyo_vol_luxury_stocks_remaining = ""
 
     while True:
         local_solver_cf = LocalSolverCF('https://yxvm.com/index.php?rp=/store/tokyo-volume-beta')
@@ -29,6 +27,13 @@ def main():
                                 "商品: YxVM Tokyo Volume Basic\n"
                                 "库存: " + product1_stocks_remaining + "\n"
                                 "价格: $3.00 USD Monthly\n"
+                                "$3优惠码: `T7I5HZW39R`\n"
+                                "aff: [go](https://yxvm.com/index.php?aff=373&rp=/store/tokyo-volume-beta/basic)")
+                tg.send_message("库存变动通知\n"
+                                "商品: YxVM Tokyo Volume Basic\n"
+                                "库存: " + product1_stocks_remaining + "\n"
+                                "价格: $3.00 USD Monthly\n"
+                                "$3优惠码: T7I5HZW39R\n"
                                 "aff: [go](https://yxvm.com/index.php?aff=373&rp=/store/tokyo-volume-beta/basic)",
                                 bot_token, chat_id, parse_mode="Markdown")
                 yxvm_tokyo_vol_basic_stocks_remaining = product1_stocks_remaining
@@ -42,6 +47,7 @@ def main():
                                 "商品: YxVM Tokyo Volume Standard\n"
                                 "库存: " + product2_stocks_remaining + "\n"
                                 "价格: $5.00 USD Monthly\n"
+                                "$3优惠码: T7I5HZW39R\n"
                                 "aff: [go](https://yxvm.com/index.php?aff=373&rp=/store/tokyo-volume-beta/standard)",
                                 bot_token, chat_id, parse_mode="Markdown")
                 yxvm_tokyo_vol_standard_stocks_remaining = product2_stocks_remaining
