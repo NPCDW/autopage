@@ -10,5 +10,5 @@ python3 -m src.solver.cf_solver
 ```
 ns签到
 ```shell
-python3 -m src.nodeseek_checkin.py
+python3 -m src.nodeseek_checkin
 ```

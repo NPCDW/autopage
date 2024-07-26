@@ -10,4 +10,4 @@ WORKDIR /autopage
 COPY ./ ./
 RUN pip3 install -r requirements.txt
 
-ENTRYPOINT ['python3', '-m']
+ENTRYPOINT ["python3", "-m"]
