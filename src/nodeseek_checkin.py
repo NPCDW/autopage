@@ -7,6 +7,9 @@ from src.request import tg
 
 def main():
     session = config['nodeseek']['session']
+    topic_id = 0
+    if 'topic_id' in config['nodeseek']:
+        topic_id = config['nodeseek']['topic_id']
 
     cookies = ['session=' + session + '; domain=www.nodeseek.com']
     local_solver_cf = LocalSolverCF('https://www.nodeseek.com/board', cookies)
@@ -19,9 +22,9 @@ def main():
     time.sleep(2)
     try:
         checkin_result = local_solver_cf.page.ele(".head-info").text
-        tg.send_message("NodeSeek: " + checkin_result)
+        tg.send_message("NodeSeek: " + checkin_result, message_thread_id=topic_id)
     except:
-        tg.send_message("NodeSeek: 签到失败")
+        tg.send_message("NodeSeek: 签到失败", message_thread_id=topic_id)
     # print(local_solver_cf.page.html)
     if config["application"]["close_after_exec"]:
         local_solver_cf.close()
