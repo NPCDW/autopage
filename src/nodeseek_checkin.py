@@ -19,9 +19,9 @@ def main():
     time.sleep(2)
     try:
         checkin_result = local_solver_cf.page.ele(".head-info").text
-        tg.send_message("NodeSeek: " + checkin_result)
+        print("NodeSeek: " + checkin_result)
     except:
-        tg.send_message("NodeSeek: 签到失败")
+        print("NodeSeek: 签到失败")
     # print(local_solver_cf.page.html)
     if config["application"]["close_after_exec"]:
         local_solver_cf.close()

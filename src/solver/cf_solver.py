@@ -25,15 +25,6 @@ class LocalSolverCF:
         page.get(url)
         self.page = page
 
-    def have_verify(self):
-        try:
-            cf_wrapper = self.page.ele('.spacer', timeout=3).ele('tag:div').ele('tag:div')
-            shadow_root = cf_wrapper.shadow_root
-            return shadow_root
-        except:
-            print("没有cf_wrapper")
-            return None
-
     '''
     当前 cf 结构
     ```
@@ -53,32 +44,31 @@ class LocalSolverCF:
     ```
     '''
     def solver(self):
-        shadow_root = self.have_verify()
-        if not shadow_root:
+        cf_wrapper = self.page.ele('.spacer', timeout=3)
+        if not cf_wrapper:
+            print("cf-turnstile-wrapper不存在，无需验证")
             return None
+        print("发现cf-turnstile-wrapper")
+        count = 0
         while True:
             try:
+                count += 1
+                shadow_root = cf_wrapper.ele('tag:div').ele('tag:div').shadow_root
                 cf_iframe = shadow_root.ele("tag=iframe", timeout=3)
-                if cf_iframe:
-                    print("加载完成iframe")
-                    break
-            except:
-                print("加载iframe")
-                time.sleep(1)
-        while True:
-            try:
                 shadow_root2 = cf_iframe.ele('tag=body', timeout=3).shadow_root
                 button = shadow_root2.ele("tag=input", timeout=3)
-                if button:
-                    print("找到按钮")
+                if button.wait.displayed(timeout=3):
+                    print("找到cf-turnstile-wrapper按钮")
                     break
             except:
-                print("查找按钮")
-                shadow_root = self.have_verify()
-                if not shadow_root:
-                    print("未找到按钮，cf-turnstile-wrapper消失，可能已经过了cf验证")
+                print("查找cf-turnstile-wrapper按钮")
+                if not self.page.ele('.spacer', timeout=3):
+                    print("cf-turnstile-wrapper消失，无需再次验证")
+                    time.sleep(3)
                     return None
-                time.sleep(1)
+                if count > 5:
+                    print("查找cf-turnstile-wrapper按钮大于5次，不再查找")
+                    return None
         try:
             time.sleep(random.uniform(0.5, 1.5))
             button.click()
@@ -97,8 +87,11 @@ class LocalSolverCF:
         except:
             print(f'click Error')
             time.sleep(1)
-        self.page.wait.load_start()
         time.sleep(3)
+        if not self.page.ele('.spacer', timeout=3):
+            print("cf-turnstile-wrapper消失，验证成功")
+            return None
+        print("cf-turnstile-wrapper仍然存在，验证失败")
 
     def close(self):
         self.page.quit()
@@ -107,6 +100,7 @@ class LocalSolverCF:
 def main():
     local_solver_cf = LocalSolverCF('https://whmcs.sharon.io/index.php?rp=/store/hk-lite')
     local_solver_cf.solver()
+    local_solver_cf.page.wait.doc_loaded(timeout=5)
     print(local_solver_cf.page.html)
     if config["application"]["close_after_exec"]:
         local_solver_cf.close()
