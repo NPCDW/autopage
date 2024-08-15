@@ -12,6 +12,13 @@
     "chat_id": "-1001234567890"
   },
   "nodeseek": {
-    "session": "wnm231eqn342sn231quw3nn32sn23y198y3"
+    "session": "wnm231eqn342sn231quw3nn32sn23y198y3",
+    "topic_id": 0
+  },
+  "vps_monitor": {
+    "check_intervals": 15,
+    "bot_token": "123456789:QEWEDesfdewqfewfqeqWEQEWQ",
+    "chat_id": "-1001234567890",
+    "topic_id": 0
   }
 }

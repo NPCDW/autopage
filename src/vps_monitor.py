@@ -9,6 +9,9 @@ def main():
     bot_token = config['vps_monitor']['bot_token']
     chat_id = config['vps_monitor']['chat_id']
     check_intervals = config['vps_monitor']['check_intervals']
+    topic_id = 0
+    if 'topic_id' in config['vps_monitor']:
+        topic_id = config['vps_monitor']['topic_id']
     loop_number = 0
     yxvm_tokyo_vol_basic_stocks_remaining = ""
     yxvm_tokyo_vol_standard_stocks_remaining = ""
@@ -28,7 +31,7 @@ def main():
                                 "库存: " + product1_stocks_remaining + "\n"
                                 "价格: $3.00 USD Monthly\n"
                                 "$3优惠码: `T7I5HZW39R`\n"
-                                "aff: [go](https://yxvm.com/index.php?aff=373&rp=/store/tokyo-volume-beta/basic)")
+                                "aff: [go](https://yxvm.com/index.php?aff=373&rp=/store/tokyo-volume-beta/basic)", message_thread_id=topic_id)
                 tg.send_message("库存变动通知\n"
                                 "商品: YxVM Tokyo Volume Basic\n"
                                 "库存: " + product1_stocks_remaining + "\n"
