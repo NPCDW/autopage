@@ -66,6 +66,7 @@ class LocalSolverCF:
                     print("cf-turnstile-wrapper消失，无需再次验证")
                     time.sleep(3)
                     return None
+                time.sleep(1)
                 if count > 5:
                     print("查找cf-turnstile-wrapper按钮大于5次，不再查找")
                     return None
@@ -86,7 +87,6 @@ class LocalSolverCF:
             # mouse.click()
         except:
             print(f'click Error')
-            time.sleep(1)
         time.sleep(3)
         if not self.page.ele('.spacer', timeout=3):
             print("cf-turnstile-wrapper消失，验证成功")
