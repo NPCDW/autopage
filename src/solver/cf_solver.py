@@ -44,7 +44,7 @@ class LocalSolverCF:
     ```
     '''
     def solver(self):
-        cf_wrapper = self.page.ele('.spacer', timeout=3)
+        cf_wrapper = self.page.ele('#usYii7', timeout=3)
         if not cf_wrapper:
             print("cf-turnstile-wrapper不存在，无需验证")
             return None
