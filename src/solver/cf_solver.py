@@ -29,22 +29,26 @@ class LocalSolverCF:
     当前 cf 结构
     ```
     <div class="cf-turnstile-wrapper">
-        #shadow-root (closed)
-        <iframe src="url">
-            <html>
-                <body>
-                    #shadow-root (closed)
-                    <input type="checkbox">
-                    <span class="cb-i"></span>
-                    <span class="cb-1b-t">确认您是真人</span>
-                </body>
-            </html>
-        </iframe>
+        <div>
+            <div>
+                #shadow-root (closed)
+                <iframe src="url">
+                    <html>
+                        <body>
+                            #shadow-root (closed)
+                            <input type="checkbox">
+                            <span class="cb-i"></span>
+                            <span class="cb-1b-t">确认您是真人</span>
+                        </body>
+                    </html>
+                </iframe>
+            </div>
+        </div>
     </div>
     ```
     '''
     def solver(self):
-        cf_wrapper = self.page.ele('#usYii7', timeout=3)
+        cf_wrapper = self.page.ele(config["verify"]["cf_verify_ele"], timeout=3)
         if not cf_wrapper:
             print("cf-turnstile-wrapper不存在，无需验证")
             return None
@@ -62,7 +66,7 @@ class LocalSolverCF:
                     break
             except:
                 print("查找cf-turnstile-wrapper按钮")
-                if not self.page.ele('.spacer', timeout=3):
+                if not self.page.ele(config["verify"]["cf_verify_ele"], timeout=3):
                     print("cf-turnstile-wrapper消失，无需再次验证")
                     time.sleep(3)
                     return None
@@ -88,7 +92,7 @@ class LocalSolverCF:
         except:
             print(f'click Error')
         time.sleep(3)
-        if not self.page.ele('.spacer', timeout=3):
+        if not self.page.ele(config["verify"]["cf_verify_ele"], timeout=3):
             print("cf-turnstile-wrapper消失，验证成功")
             return None
         print("cf-turnstile-wrapper仍然存在，验证失败")

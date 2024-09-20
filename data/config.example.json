@@ -7,6 +7,9 @@
     "close_after_exec": false,
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0"
   },
+  "verify": {
+    "cf_verify_ele": "#JStsl2"
+  },
   "telegram": {
     "bot_token": "123456789:QEWEDesfdewqfewfqeqWEQEWQ",
     "chat_id": "-1001234567890"
