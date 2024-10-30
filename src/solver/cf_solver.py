@@ -57,7 +57,7 @@ class LocalSolverCF:
         while True:
             try:
                 count += 1
-                shadow_root = cf_wrapper.ele('tag:div').ele('tag:div').shadow_root
+                shadow_root = cf_wrapper.parent().shadow_root
                 cf_iframe = shadow_root.ele("tag=iframe", timeout=3)
                 shadow_root2 = cf_iframe.ele('tag=body', timeout=3).shadow_root
                 button = shadow_root2.ele("tag=input", timeout=3)
