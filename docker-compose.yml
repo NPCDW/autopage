@@ -7,5 +7,6 @@ services:
       - "${PWD}/data/:/autopage/data"
     environment:
       TZ : 'Asia/Shanghai'
-      LANG: 'C.UTF-8'
-      LC_ALL: 'C.UTF-8'
+      LANG: 'zh_CN.UTF-8'
+      LC_ALL: 'zh_CN.UTF-8'
+      LANGUAGE: 'zh_CN:zh'
