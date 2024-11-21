@@ -12,3 +12,7 @@ ns签到
 ```shell
 python3 -m src.nodeseek_checkin
 ```
+akile签到
+```shell
+python3 -m src.akile_checkin
+```
