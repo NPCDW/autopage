@@ -26,6 +26,7 @@ def checkin(local_solver_cf):
         local_solver_cf.page.actions.click("#password").input(password)
         login_button = local_solver_cf.page.ele("tag=button@@text()=登录")
         login_button.click()
+        print("登录成功")
     except:
         print(local_solver_cf.page.html)
         print("登录失败，登录页面查找元素失败")
@@ -35,12 +36,14 @@ def checkin(local_solver_cf):
     try:
         button = local_solver_cf.page.ele("tag=button@@text()=下次一定")
         button.click()
+        print("下次一定2FA")
     except:
         print("")
     time.sleep(2)
     try:
         button = local_solver_cf.page.ele("tag=button@@text()=控制台")
         button.click()
+        print("进入控制台")
     except:
         print(local_solver_cf.page.html)
         print("Akile: 查找控制台按钮失败")
@@ -53,6 +56,7 @@ def checkin(local_solver_cf):
         time.sleep(1)
         total = local_solver_cf.page.eles(".arco-statistic-value")[1].text
         tg.send_message("Akile: " + total, message_thread_id=topic_id)
+        print("签到成功，发送tg消息成功")
     except:
         tg.send_message("Akile: 签到失败", message_thread_id=topic_id)
         print(local_solver_cf.page.html)
