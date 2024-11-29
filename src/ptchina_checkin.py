@@ -38,18 +38,16 @@ def checkin(local_solver_cf):
         time.sleep(2)
         print("签到成功")
     except:
-        tg.send_message("铂金学院: 签到失败", message_thread_id=topic_id)
         print(local_solver_cf.page.html)
-        print("铂金学院: 签到失败")
-        return
+        print("铂金学院: 没有找到签到按钮，可能已经签过到了")
     try:
         total = local_solver_cf.page.ele("tag=a@@text()=[勋章]").prev().text
         tg.send_message("铂金学院: " + total, message_thread_id=topic_id)
         print("发送tg消息成功")
     except:
-        tg.send_message("铂金学院: 签到成功，查询签到结果失败", message_thread_id=topic_id)
+        tg.send_message("铂金学院: 查询签到结果失败", message_thread_id=topic_id)
         print(local_solver_cf.page.html)
-        print("铂金学院: 签到成功，查询签到结果失败")
+        print("铂金学院: 查询签到结果失败")
         return
 
 
