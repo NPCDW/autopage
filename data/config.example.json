@@ -23,6 +23,14 @@
     "password": "",
     "topic_id": 0
   },
+  "ptchina": {
+    "c_secure_login": "",
+    "c_secure_pass": "",
+    "c_secure_ssl": "",
+    "c_secure_tracker_ssl": "",
+    "c_secure_uid": "",
+    "topic_id": 0
+  },
   "vps_monitor": {
     "check_intervals": 15,
     "bot_token": "123456789:QEWEDesfdewqfewfqeqWEQEWQ",
