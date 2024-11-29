@@ -20,7 +20,7 @@ def checkin(local_solver_cf):
     if 'topic_id' in config['akile']:
         topic_id = config['akile']['topic_id']
 
-    time.sleep(2)
+    time.sleep(5)
     button = local_solver_cf.page.ele("tag=button@@text()=控制台")
     if not button:
         try:
@@ -57,8 +57,8 @@ def checkin(local_solver_cf):
         try:
             button = local_solver_cf.page.ele("每日签到")
             button.click()
-            time.sleep(1)
             print("签到成功")
+            time.sleep(5)
         except:
             tg.send_message("Akile: 签到失败", message_thread_id=topic_id)
             print(local_solver_cf.page.html)
