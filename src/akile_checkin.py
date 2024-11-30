@@ -6,7 +6,7 @@ from src.request import tg
 
 
 def main():
-    local_solver_cf = LocalSolverCF('https://akile.io/login')
+    local_solver_cf = LocalSolverCF('https://akile.io/console')
     local_solver_cf.solver()
     checkin(local_solver_cf)
     if config["application"]["close_after_exec"]:
@@ -20,9 +20,7 @@ def checkin(local_solver_cf):
     if 'topic_id' in config['akile']:
         topic_id = config['akile']['topic_id']
 
-    time.sleep(5)
-    button = local_solver_cf.page.ele("tag=button@@text()=控制台")
-    if not button:
+    if local_solver_cf.page.url.__contains__("login"):
         try:
             local_solver_cf.page.actions.click("#email").input(email)
             local_solver_cf.page.actions.click("#password").input(password)
@@ -35,23 +33,17 @@ def checkin(local_solver_cf):
             tg.send_message("Akile: 签到失败", message_thread_id=topic_id)
             return
         time.sleep(5)
-        try:
-            button = local_solver_cf.page.ele("tag=button@@text()=下次一定")
-            button.click()
-            print("下次一定2FA")
-        except:
-            print("")
-        time.sleep(2)
+        local_solver_cf.page.get("https://akile.io/console")
+        time.sleep(5)
+    else:
+        print("已是登录状态")
     try:
-        button = local_solver_cf.page.ele("tag=button@@text()=控制台")
+        button = local_solver_cf.page.ele("tag=button@@text()=下次一定")
         button.click()
-        print("进入控制台")
+        print("下次一定2FA")
     except:
-        print(local_solver_cf.page.html)
-        print("Akile: 查找控制台按钮失败")
-        tg.send_message("Akile: 签到失败", message_thread_id=topic_id)
-        return
-    time.sleep(5)
+        print("")
+    time.sleep(2)
     button = local_solver_cf.page.ele("tag=button@@text()=今日已签到")
     if not button:
         try:
@@ -60,18 +52,20 @@ def checkin(local_solver_cf):
             print("签到成功")
             time.sleep(5)
         except:
+            print("Akile: 签到失败")
             tg.send_message("Akile: 签到失败", message_thread_id=topic_id)
             print(local_solver_cf.page.html)
-            print("Akile: 签到失败")
             return
+    else:
+        print("今日已签到，查询签到结果")
     try:
         total = local_solver_cf.page.eles(".arco-statistic-value")[1].text
         tg.send_message("Akile: " + total, message_thread_id=topic_id)
         print("发送tg消息成功")
     except:
-        tg.send_message("Akile: 签到成功，查询签到结果失败", message_thread_id=topic_id)
         print(local_solver_cf.page.html)
         print("Akile: 签到成功，查询签到结果失败")
+        tg.send_message("Akile: 签到成功，查询签到结果失败", message_thread_id=topic_id)
         return
 
 

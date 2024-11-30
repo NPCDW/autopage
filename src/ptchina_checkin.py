@@ -45,9 +45,9 @@ def checkin(local_solver_cf):
         tg.send_message("铂金学院: " + total, message_thread_id=topic_id)
         print("发送tg消息成功")
     except:
-        tg.send_message("铂金学院: 查询签到结果失败", message_thread_id=topic_id)
         print(local_solver_cf.page.html)
         print("铂金学院: 查询签到结果失败")
+        tg.send_message("铂金学院: 查询签到结果失败", message_thread_id=topic_id)
         return
 
 

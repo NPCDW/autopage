@@ -26,9 +26,9 @@ def main():
         tg.send_message("NodeSeek: " + checkin_result, message_thread_id=topic_id)
         print("NodeSeek: " + checkin_result)
     except:
-        tg.send_message("NodeSeek: 签到失败", message_thread_id=topic_id)
         print(local_solver_cf.page.html)
         print("NodeSeek: 签到失败")
+        tg.send_message("NodeSeek: 签到失败", message_thread_id=topic_id)
     if config["application"]["close_after_exec"]:
         local_solver_cf.close()
 
