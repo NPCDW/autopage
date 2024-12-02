@@ -34,9 +34,9 @@ def checkin(local_solver_cf):
             return
         time.sleep(5)
         local_solver_cf.page.get("https://akile.io/console")
-        time.sleep(5)
     else:
         print("已是登录状态")
+    time.sleep(5)
     try:
         button = local_solver_cf.page.ele("tag=button@@text()=下次一定")
         button.click()
