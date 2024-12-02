@@ -6,7 +6,7 @@ from src.request import tg
 
 
 def main():
-    local_solver_cf = LocalSolverCF('https://akile.io/console')
+    local_solver_cf = LocalSolverCF('https://akile.io/login')
     local_solver_cf.solver()
     checkin(local_solver_cf)
     if config["application"]["close_after_exec"]:
@@ -33,17 +33,10 @@ def checkin(local_solver_cf):
             tg.send_message("Akile: 签到失败", message_thread_id=topic_id)
             return
         time.sleep(5)
-        local_solver_cf.page.get("https://akile.io/console")
     else:
         print("已是登录状态")
+    local_solver_cf.page.get("https://akile.io/console")
     time.sleep(5)
-    try:
-        button = local_solver_cf.page.ele("tag=button@@text()=下次一定")
-        button.click()
-        print("下次一定2FA")
-    except:
-        print("")
-    time.sleep(2)
     button = local_solver_cf.page.ele("tag=button@@text()=今日已签到")
     if not button:
         try:
