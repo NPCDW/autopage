@@ -6,7 +6,7 @@ from src.request import tg
 
 
 def main():
-    local_solver_cf = LocalSolverCF('https://akile.io/login')
+    local_solver_cf = LocalSolverCF('https://akile.io/login', incognito_mode=True)
     local_solver_cf.solver()
     checkin(local_solver_cf)
     if config["application"]["close_after_exec"]:
