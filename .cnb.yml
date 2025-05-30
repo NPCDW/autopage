@@ -1,0 +1,22 @@
+$:
+  vscode:
+    - docker:
+        build: .ide/Dockerfile
+      services:
+        - vscode
+        - docker
+      # 开发环境启动后会执行的任务
+      stages:
+        - name: install dep
+          script: pip3 install -r requirements.txt
+
+  push:
+    - imports: https://cnb.cool/my-codespace/envs/-/blob/main/github-secret.yml
+      stages:
+        - name: sync to github
+          image: tencentcom/git-sync
+          settings:
+            target_url: https://github.com/NPCDW/autopage.git
+            auth_type: https
+            username: ${GITHUB_USERNAME}
+            password: ${GITHUB_ACCESS_TOKEN}
