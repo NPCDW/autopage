@@ -8,7 +8,7 @@ from src.solver.get_chromium_options import GetChromiumOptions
 
 def main():
     chromium_options = GetChromiumOptions()
-    page = WebPage('d', chromium_options.co)
+    page = WebPage('d', chromium_options=chromium_options.get_co())
     data = "period={}&plan_id={}&coupon_code={}".format(config['v2b_buy']['period'], config['v2b_buy']['plan_id'], config['v2b_buy']['coupon_code'])
     count = 0
     while True:

@@ -12,7 +12,7 @@ from src.solver.get_chromium_options import GetChromiumOptions
 class LocalSolverCF:
     def __init__(self, url, cookies=None, incognito_mode=None):
         chromium_options = GetChromiumOptions(incognito_mode)
-        page = ChromiumPage(chromium_options.co)
+        page = ChromiumPage(addr_or_opts=chromium_options.co)
         if cookies is not None:
             page.set.cookies(cookies)
         # page.actions.move(474, 362)
