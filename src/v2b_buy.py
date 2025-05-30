@@ -3,11 +3,12 @@ import time
 from src.config.config import config
 from DrissionPage import WebPage
 from src.request import tg
+from src.solver.get_chromium_options import GetChromiumOptions
 
 
 def main():
-    page = WebPage()
-    page.change_mode('d')
+    chromium_options = GetChromiumOptions()
+    page = WebPage('d', chromium_options.co)
     data = "period={}&plan_id={}&coupon_code={}".format(config['v2b_buy']['period'], config['v2b_buy']['plan_id'], config['v2b_buy']['coupon_code'])
     count = 0
     while True:
