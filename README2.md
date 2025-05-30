@@ -20,3 +20,7 @@ ptchina签到
 ```shell
 python3 -m src.ptchina_checkin
 ```
+v2b套餐购买
+```shell
+python3 -m src.v2b_buy
+```
