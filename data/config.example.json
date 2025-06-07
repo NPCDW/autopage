@@ -31,6 +31,10 @@
     "c_secure_uid": "",
     "topic_id": 0
   },
+  "rjemby": {
+    "base_url": "",
+    "tg_id": 0
+  },
   "v2b_buy": {
     "authorization": "",
     "domain": "",
