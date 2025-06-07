@@ -23,7 +23,7 @@ def checkin(local_solver_cf):
         button.click()
         time.sleep(10)
         checkin_result = local_solver_cf.page.ele("#result").text
-        print(local_solver_cf.page.html)
+        # print(local_solver_cf.page.html)
         print("rjemby: 签到结果: " + checkin_result)
     except:
         print(local_solver_cf.page.html)
