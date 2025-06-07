@@ -33,7 +33,13 @@
   },
   "rjemby": {
     "base_url": "",
-    "tg_id": 0
+    "tg_id": 0,
+    "cf_verify_ele": "#turnstile-container"
+  },
+  "rjgemby": {
+    "base_url": "",
+    "tg_id": 0,
+    "cf_verify_ele": "#turnstile-container"
   },
   "v2b_buy": {
     "authorization": "",
