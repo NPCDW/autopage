@@ -10,12 +10,14 @@ from src.solver.get_chromium_options import GetChromiumOptions
 
 
 class LocalSolverCF:
-    def __init__(self, url, cf_verify_ele, cookies=None, incognito_mode=None):
+    def __init__(self, url, cf_verify_ele, cookies=None, incognito_mode=None, init_js=None):
         chromium_options = GetChromiumOptions(incognito_mode)
         page = ChromiumPage(addr_or_opts=chromium_options.co)
         if cookies is not None:
             page.set.cookies(cookies)
         # page.actions.move(474, 362)
+        if init_js is not None:
+            page.add_init_js(init_js)
         page.get(url)
         self.cf_verify_ele = cf_verify_ele
         self.page = page

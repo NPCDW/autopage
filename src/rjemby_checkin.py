@@ -9,7 +9,11 @@ def main():
     tg_id = config['rjemby']['tg_id']
     cf_verify_ele = config['rjemby']['cf_verify_ele']
 
-    local_solver_cf = LocalSolverCF("{}/api/checkin/web?user_id={}".format(base_url, tg_id), cf_verify_ele=cf_verify_ele)
+    local_solver_cf = LocalSolverCF("{}/api/checkin/web?user_id={}".format(base_url, tg_id), cf_verify_ele=cf_verify_ele, init_js="new MutationObserver((mutations) => {"
+                             "document.querySelectorAll('script').forEach(script => {"
+                             "if (script.textContent.includes('performSecurityChecks')) {"
+                             "script.textContent = script.textContent.replace('performSecurityChecks()', 'true');}});})"
+                             ".observe(document, { childList: true, subtree: true });")
     local_solver_cf.solver()
     checkin(local_solver_cf)
     if config["application"]["close_after_exec"]:
