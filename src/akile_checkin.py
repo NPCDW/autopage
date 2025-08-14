@@ -22,8 +22,8 @@ def checkin(local_solver_cf):
 
     if local_solver_cf.page.url.__contains__("login"):
         try:
-            local_solver_cf.page.actions.click("#email").input(email)
-            local_solver_cf.page.actions.click("#password").input(password)
+            local_solver_cf.page.actions.click("@name=email").input(email)
+            local_solver_cf.page.actions.click("@name=password").input(password)
             login_button = local_solver_cf.page.ele("tag=button@@text()=登录")
             login_button.click()
             print("登录成功")
@@ -35,7 +35,7 @@ def checkin(local_solver_cf):
         time.sleep(5)
     else:
         print("已是登录状态")
-    local_solver_cf.page.get("https://akile.io/console")
+    local_solver_cf.page.get("https://console.akile.io/")
     time.sleep(5)
     button = local_solver_cf.page.ele("tag=button@@text()=今日已签到")
     if not button:
@@ -52,7 +52,8 @@ def checkin(local_solver_cf):
     else:
         print("今日已签到，查询签到结果")
     try:
-        total = local_solver_cf.page.eles(".arco-statistic-value")[1].text
+        total = local_solver_cf.page.eles(".text-3xl font-bold mb-1")[0].text
+        print("签到结果：" + total)
         tg.send_message("Akile: " + total, message_thread_id=topic_id)
         print("发送tg消息成功")
     except:
